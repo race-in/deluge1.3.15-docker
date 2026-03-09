@@ -1,18 +1,28 @@
 #!/bin/bash
 
-echo "Installing Deluge 1.3.15 Docker..."
+echo "Installing Deluge Docker..."
 
-# install dependencies
 apt update
 apt install -y docker.io git
 
 systemctl enable docker
 systemctl start docker
 
-# clone project
 git clone https://github.com/race-in/deluge1.3.15-docker.git
 
 cd deluge1.3.15-docker
 
-# run deploy
-bash deploy.sh
+docker build -t deluge13 .
+
+docker run -d \
+--name deluge13 \
+--network host \
+-v $(pwd)/downloads:/downloads \
+-v $(pwd)/config:/root/.config/deluge \
+deluge13
+
+echo "================================="
+echo "Deluge Installed"
+echo "WebUI → http://SERVER_IP:8113"
+echo "Password → deluge"
+echo "================================="
