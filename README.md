@@ -1,6 +1,6 @@
 # Deluge 1.3.15 Docker
 
-Deluge 1.3.15 with libtorrent 1.1.14.
+Install Deluge 1.3.15 with one command.
 
 ## Install
 
@@ -9,5 +9,4 @@ bash <(curl -s https://raw.githubusercontent.com/race-in/deluge1.3.15-docker/mai
 ## WebUI
 
 http://SERVER_IP:8113
-
 Password: deluge
