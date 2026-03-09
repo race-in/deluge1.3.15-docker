@@ -2,15 +2,17 @@
 
 CONFIG="/root/.config/deluge"
 
-mkdir -p $CONFIG
+mkdir -p $CONFIG/state
+mkdir -p $CONFIG/plugins
 
-cp -n /core.conf $CONFIG/core.conf
-cp -n /ltconfig.conf $CONFIG/ltconfig.conf
-
+echo "Starting Deluge daemon..."
 deluged -d
 
-sleep 8
+sleep 5
 
+echo "Starting WebUI..."
 deluge-web --fork --port 8113
+
+echo "Deluge started"
 
 tail -f /dev/null
